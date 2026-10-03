@@ -1,0 +1,43 @@
+import pandas as pd
+
+# Training data
+data = {
+    'Sky': ['Sunny', 'Sunny', 'Rainy', 'Sunny'],
+    'AirTemp': ['Warm', 'Warm', 'Cold', 'Warm'],
+    'Humidity': ['Normal', 'High', 'High', 'High'],
+    'Wind': ['Strong', 'Strong', 'Strong', 'Weak'],
+    'EnjoySport': ['Yes', 'Yes', 'No', 'Yes']
+}
+
+df = pd.DataFrame(data)
+
+print("Training Data:")
+print(df)
+
+# FIND-S algorithm
+hypothesis = ['Ø'] * (len(df.columns) - 1)
+
+for i in range(len(df)):
+    if df.iloc[i, -1] == 'Yes':
+        for j in range(len(hypothesis)):
+            if hypothesis[j] == 'Ø':
+                hypothesis[j] = df.iloc[i, j]
+            elif hypothesis[j] != df.iloc[i, j]:
+                hypothesis[j] = '?'
+
+print("\nMost Specific Hypothesis:")
+print(hypothesis)
+
+Training Data:
+     Sky AirTemp Humidity    Wind EnjoySport
+0  Sunny    Warm   Normal  Strong        Yes
+1  Sunny    Warm     High  Strong        Yes
+2  Rainy    Cold     High  Strong         No
+3  Sunny    Warm     High    Weak        Yes
+
+Most Specific Hypothesis:
+['Sunny', 'Warm', '?', '?']
+
+
+
+
