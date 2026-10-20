@@ -1,0 +1,19 @@
+from sklearn.linear_model import LinearRegression
+
+# Training data
+X = [[1], [2], [3], [4], [5]]
+y = [2, 4, 6, 8, 10]
+
+# Create the model
+model = LinearRegression()
+
+# Train the model
+model.fit(X, y)
+
+# Predict a value
+result = model.predict([[6]])
+
+print("Predicted value:", result[0])
+
+
+Predicted value: 12.0
