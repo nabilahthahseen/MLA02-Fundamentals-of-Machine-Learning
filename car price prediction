@@ -1,0 +1,33 @@
+
+from sklearn.linear_model import LinearRegression
+import pandas as pd
+
+# Sample car data
+data = {
+    'Age': [1, 2, 3, 4, 5, 6],
+    'Mileage': [10000, 20000, 30000, 40000, 50000, 60000],
+    'Price': [900000, 800000, 700000, 600000, 500000, 400000]
+}
+
+# Create a dataset
+df = pd.DataFrame(data)
+
+# Input and output
+X = df[['Age', 'Mileage']]
+y = df['Price']
+
+# Train the model
+model = LinearRegression()
+model.fit(X, y)
+
+# Predict car price
+age = 3
+mileage = 30000
+
+price = model.predict([[age, mileage]])
+
+print("Predicted Car Price: ₹", round(price[0], 2))
+
+
+
+  Predicted Car Price: ₹ 700000.0
