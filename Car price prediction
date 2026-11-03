@@ -1,0 +1,45 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Create dataset
+data = {
+    'Age': [2, 3, 4, 5, 6, 7, 8, 9],
+    'Present_Price': [8, 7, 6, 5, 4, 3, 2, 1],
+    'Kms_Driven': [20000, 30000, 40000, 50000,
+                   60000, 70000, 80000, 90000],
+    'Selling_Price': [7, 6, 5, 4, 3, 2, 1.5, 1]
+}
+
+df = pd.DataFrame(data)
+
+# Input and output
+X = df[['Age', 'Present_Price', 'Kms_Driven']]
+y = df['Selling_Price']
+
+# Split dataset
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=1
+)
+
+# Create model
+model = LinearRegression()
+
+# Train model
+model.fit(X_train, y_train)
+
+# Predict price
+age = int(input("Enter car age: "))
+price = float(input("Enter present price: "))
+kms = int(input("Enter kilometres driven: "))
+
+result = model.predict([[age, price, kms]])
+
+
+
+Enter car age: 3
+Enter present price: 7
+Enter kilometres driven: 30000
+Predicted Car Price: 5.97
+
+print("Predicted Car Price:", round(result[0], 2))
