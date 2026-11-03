@@ -1,0 +1,44 @@
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+
+
+iris = load_iris()
+
+X = iris.data
+y = iris.target
+
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=1
+)
+
+
+model = GaussianNB()
+
+
+model.fit(X_train, y_train)
+
+prediction = model.predict(X_test)
+
+
+print("Accuracy:", model.score(X_test, y_test) * 100, "%")
+
+
+a = float(input("Enter Sepal Length: "))
+b = float(input("Enter Sepal Width: "))
+c = float(input("Enter Petal Length: "))
+d = float(input("Enter Petal Width: "))
+
+result = model.predict([[a, b, c, d]])
+
+
+Accuracy: 96.66666666666667 %
+Enter Sepal Length: 5.1
+Enter Sepal Width: 3.5
+Enter Petal Length: 1.4
+Enter Petal Width: 0.2
+Predicted Flower: setosa
+
+
+print("Predicted Flower:", iris.target_names[result[0]])
