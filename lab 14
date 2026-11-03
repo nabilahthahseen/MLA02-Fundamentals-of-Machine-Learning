@@ -1,0 +1,30 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+data = {
+    'Area': [1000, 1200, 1500, 1800, 2000],
+    'Bedrooms': [2, 2, 3, 3, 4],
+    'Price': [20, 25, 35, 40, 50]
+}
+
+df = pd.DataFrame(data)
+
+X = df[['Area', 'Bedrooms']]
+y = df['Price']
+
+model = LinearRegression()
+model.fit(X, y)
+
+area = int(input("Enter house area: "))
+bedrooms = int(input("Enter number of bedrooms: "))
+
+prediction = model.predict([[area, bedrooms]])
+
+print("Predicted House Price:", round(prediction[0], 2), "Lakhs")
+
+
+
+
+Enter house area: 1600
+Enter number of bedrooms: 3
+Predicted House Price: 36.92 Lakhs
