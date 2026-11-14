@@ -1,0 +1,22 @@
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+
+X = np.array([[2], [3], [4], [6], [8], [12]])
+y = np.array([5000, 7000, 9000, 13000, 17000, 25000])
+
+
+model = LinearRegression()
+model.fit(X, y)
+
+
+ram = float(input("Enter mobile RAM in GB: "))
+
+
+price = model.predict([[ram]])
+
+print("Predicted Mobile Price: Rs.", round(price[0], 2))
+
+
+Enter mobile RAM in GB: 8
+Predicted Mobile Price: Rs. 17000.0
